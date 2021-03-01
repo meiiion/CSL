@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("Lab")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CSharp labs")]
+[assembly: AssemblyDescription("Лабораторные работы по C#")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lab")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCompany("github.com/meiiion")]
+[assembly: AssemblyProduct("CSharp labs")]
+[assembly: AssemblyCopyright("Copyright © meiiion 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

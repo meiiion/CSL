@@ -6,7 +6,7 @@ namespace Lab
     class Program
     { 
         /// <summary>
-        /// pseudographic interface
+        /// Pseudographic interface
         /// </summary>
         static void GraphicalMenuMode()
         {
@@ -16,8 +16,9 @@ namespace Lab
             menu.Add("           Exit           ", () => { menu.Close(); });
             menu.MainLoop();
         }
+        
         /// <summary>
-        /// text interface
+        /// Text interface
         /// </summary>
         static void NumericMenuMode()
         {
@@ -28,22 +29,22 @@ namespace Lab
             menu.Add("Exit", () => { menu.Close(); });
             menu.MainLoop();
         }
+        
         static void ParseArguments(string[] args)
         {
-            foreach (string arg in args)
-            {
-                switch (arg)
+            for (int i = 0; i < args.Length; i++)
+                switch (args[i])
                 {
                     case "-mi":
 
                         break;
-                    case "-x	":
+                    case "-x":
                         
                         break;
-                    case "-y	":
+                    case "-y":
                         
                         break;
-                    case "-z	":
+                    case "-z":
                         
                         break;
                     case "-d1st":
@@ -65,29 +66,18 @@ namespace Lab
                         
                         break;
                 }
-            }
         }
+        
         static void Main(string[] args)
         {
-            //ParseArguments(args);
-            if (args.Length == 1)
-                if (args[0] == "-s")
-                {
-                    NumericMenuMode();
-                    return;
-                }
-                else
-                if (args[0] == "-i")
-                {
-                    GraphicalMenuMode();
-                    return;
-                }
+            ParseArguments(args);
+            Menu submenu = new Menu();
             GraphicalMenu menu = new GraphicalMenu();
             menu.Add(" use graphical menu mode ", GraphicalMenuMode);
             menu.Add("  use numeric menu mode  ", NumericMenuMode);
             menu.Add("          Exit           ", () => { menu.Close(); });
             menu.MainLoop();
+            
         }
-
     }
 }
