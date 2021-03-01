@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Lab
 {
-    class Task
+    static class Task
     {
         /// <summary>
         /// Print 'hello world'
@@ -20,7 +16,7 @@ namespace Lab
             while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
         }
         /// <summary>
-        /// Calculate: (Y % X)/sqrt(Z)
+        /// Calculate: (Y % X) / sqrt(Z)
         /// </summary>
         public static void CalculateFormula()
         {
@@ -57,57 +53,99 @@ namespace Lab
                 while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
             }
         }
-
         public static void RecursionDate()
         {
-            Console.Clear();
-
-            Console.Write("First date span: ");
-            Match match1 = Regex.Match(Console.ReadLine(), @"(\d{2}.\d{2}.\d{4}) - (\d{2}.\d{2}.\d{4})");
-
-            Console.Write("Second date span: ");
-            Match match2 = Regex.Match(Console.ReadLine(), @"(\d{2}.\d{2}.\d{4}) - (\d{2}.\d{2}.\d{4})");
-
-            CultureInfo cultureInfo = new CultureInfo("ru_RU");
-
-            DateTime StartDate1 = DateTime.Parse(match1.Groups[1].Value, cultureInfo),
-                     EndDate1   = DateTime.Parse(match1.Groups[2].Value, cultureInfo),
-                     StartDate2 = DateTime.Parse(match1.Groups[1].Value, cultureInfo),
-                     EndDate2   = DateTime.Parse(match1.Groups[2].Value, cultureInfo);
-
-            if (StartDate1 < EndDate1 || StartDate2 < EndDate2)
-                throw new DateSpanException();
-
-            if (StartDate1 == StartDate2 && EndDate1 == EndDate2)
+            try
             {
-                Console.WriteLine(Factorial((EndDate1 - StartDate1).Days));
+                Console.Clear();
+                CultureInfo cultureInfo = new CultureInfo("ru_RU");
+                
+                Console.Write("First date span: ");
+                DateSpan dateSpan1 = new DateSpan(Console.ReadLine());
+                if (dateSpan1.From < dateSpan1.To) 
+                    throw new DateSpanException("The beginning of the range must be greater than the end");
+                
+                Console.Write("Second date span: ");
+                DateSpan dateSpan2 = new DateSpan(Console.ReadLine());
+                if (dateSpan2.From < dateSpan2.To)
+                    throw new DateSpanException("The beginning of the range must be greater than the end");
+
+                if (dateSpan1.From == dateSpan2.From && dateSpan1.To == dateSpan2.To)
+                {
+                    if ((dateSpan1.From - dateSpan1.To).Days > 20) throw new TooBigSpanException("The span must be less than or equal to 20");
+                    Console.WriteLine(Factorial((dateSpan1.To - dateSpan1.From).Days));
+                }
+                else
+                if (dateSpan1.From > dateSpan2.From && dateSpan1.To < dateSpan2.To)
+                {
+
+                }
+                else
+                if (dateSpan1.From > dateSpan2.From && dateSpan1.To < dateSpan2.To)
+                {
+
+                }
+                else
+                if (dateSpan1.From < dateSpan2.From && dateSpan1.To > dateSpan2.To)
+                {
+
+                }
+                else
+                if (dateSpan1.From > dateSpan2.From && dateSpan1.To > dateSpan2.To)
+                {
+
+                }
+                else
+                if (dateSpan1.From < dateSpan2.From && dateSpan1.To < dateSpan2.To)
+                {
+
+                }
             }
-            else
-            if (StartDate1 > StartDate2 && EndDate1 < EndDate2)
+            catch (System.FormatException)
             {
-
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid data format");
+                Console.ResetColor();
             }
-            else
-            if (StartDate1 > StartDate2 && EndDate1 < EndDate2)
+            catch (DateSpanException msg)
             {
-
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Invalid date span: {msg.Message}");
+                Console.ResetColor();
             }
-            else
-            if (StartDate1 < StartDate2 && EndDate1 > EndDate2)
+            finally
             {
-
-            }
-            else
-            if (StartDate1 > StartDate2 && EndDate1 > EndDate2)
-            {
-
-            }
-            else
-            if (StartDate1 < StartDate2 && EndDate1 < EndDate2)
-            {
-
+                while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
             }
         }
+        
+        
+        
+        
+        
+        
+        //---------------------------------------------------------//
         private static long Factorial(int number) => number == 0 ? 1 : number * Factorial(number - 1);
+        class DateSpan
+        {
+            public DateSpan(string dateSpan)
+            {
+                CultureInfo cultureInfo = new CultureInfo("ru_RU");
+                Match match = Regex.Match(dateSpan, @"(\d{2}.\d{2}.\d{4}) - (\d{2}.\d{2}.\d{4})");
+                From = DateTime.Parse(match.Groups[1].Value, cultureInfo);
+                To = DateTime.Parse(match.Groups[2].Value, cultureInfo);
+            }
+            public DateTime From 
+            {
+                get;
+            }
+            public DateTime To
+            {
+                get;
+            }
+
+        }
     }
 }

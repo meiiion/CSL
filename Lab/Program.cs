@@ -13,6 +13,7 @@ namespace Lab
             GraphicalMenu menu = new GraphicalMenu();
             menu.Add("       Hello World!       ", Task.HelloWorld);
             menu.Add("Calculate: (Y % X)/sqrt(Z)", Task.CalculateFormula);
+            menu.Add("      Recursion date      ", Task.RecursionDate);
             menu.Add("           Exit           ", () => { menu.Close(); });
             menu.MainLoop();
         }
@@ -26,7 +27,10 @@ namespace Lab
             menu.Add("Hello World!", Task.HelloWorld);
             menu.Add("Calculate: (Y % X)/sqrt(Z)", Task.CalculateFormula);
             menu.Add("Recursion date", Task.RecursionDate);
-            menu.Add("Exit", () => { menu.Close(); });
+            menu.Add("Exit", () => 
+            { 
+                menu.Close(); 
+            });
             menu.MainLoop();
         }
         
