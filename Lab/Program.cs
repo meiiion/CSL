@@ -11,9 +11,9 @@ namespace Lab
         static void GraphicalMenuMode()
         {
             GraphicalMenu menu = new GraphicalMenu();
-            menu.Add("       Hello World!       ", Task.HelloWorld);
-            menu.Add("Calculate: (Y % X)/sqrt(Z)", Task.CalculateFormula);
-            menu.Add("      Recursion date      ", Task.RecursionDate);
+            menu.Add("       Hello World!       ", new TaskHelloWorld().Execute);
+            menu.Add("Calculate: (Y % X)/sqrt(Z)", new TaskCalculateFormula().Execute);
+            menu.Add("      Recursion date      ", new TaskRecursionDate().Execute);
             menu.Add("           Exit           ", () => { menu.Close(); });
             menu.MainLoop();
         }
@@ -24,13 +24,10 @@ namespace Lab
         static void NumericMenuMode()
         {
             NumericMenu menu = new NumericMenu();
-            menu.Add("Hello World!", Task.HelloWorld);
-            menu.Add("Calculate: (Y % X)/sqrt(Z)", Task.CalculateFormula);
-            menu.Add("Recursion date", Task.RecursionDate);
-            menu.Add("Exit", () => 
-            { 
-                menu.Close(); 
-            });
+            menu.Add("Hello World!",                new TaskHelloWorld().Execute);
+            menu.Add("Calculate: (Y % X)/sqrt(Z)",  new TaskCalculateFormula().Execute);
+            menu.Add("Recursion date",              new TaskRecursionDate().Execute);
+            menu.Add("Exit",                        () => { menu.Close(); });
             menu.MainLoop();
         }
         

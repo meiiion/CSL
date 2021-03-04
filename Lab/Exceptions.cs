@@ -7,9 +7,9 @@ namespace Lab
         public DateSpanException() : base() { }
         public DateSpanException(string message) : base(message) { }
     }
-    class TooBigSpanException : Exception
+    class TooBigNException : Exception
     {
-        public TooBigSpanException() : base() { }
-        public TooBigSpanException(string message) : base(message) { }
+        public TooBigNException() : base() { }
+        public TooBigNException(string message) : base(message) { }
     }
 }
