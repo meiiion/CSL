@@ -35,40 +35,48 @@ namespace Lab
         
         static void ParseArguments(string[] args)
         {
-            for (int i = 0; i < args.Length; i++)
-                switch (args[i])
-                {
-                    case "-mi":
+            try
+            {
+                for (int i = 0; i < args.Length; i++)
+                    switch (args[i])
+                    {
+                        case "--help":
+                            Console.WriteLine
+                            break;
+                        case "--graphical":
 
-                        break;
-                    case "-x":
-                        
-                        break;
-                    case "-y":
-                        
-                        break;
-                    case "-z":
-                        
-                        break;
-                    case "-d1st":
-                        
-                        break;
-                    case "-d1end":
-                        
-                        break;
-                    case "-d2st":
-                        
-                        break;
-                    case "-d2end":
-                        
-                        break;
-                    case "-s1":
-                        
-                        break;
-                    case "-s2":
-                        
-                        break;
-                }
+                            break;
+                        case "--numeric":
+
+                            break;
+                        case "-z":
+
+                            break;
+                        case "-d1st":
+
+                            break;
+                        case "-d1end":
+
+                            break;
+                        case "-d2st":
+
+                            break;
+                        case "-d2end":
+
+                            break;
+                        case "-s1":
+
+                            break;
+                        case "-s2":
+
+                            break;
+                    }
+            } 
+            catch (Exception)
+            {
+
+            }
+            
         }
         
         static void Main(string[] args)
