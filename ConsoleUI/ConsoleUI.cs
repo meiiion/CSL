@@ -158,7 +158,7 @@ namespace ConsoleUI
                     Console.ResetColor();
                     while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
                 }
-                catch (System.IndexOutOfRangeException)
+                catch (System.Exception)
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;

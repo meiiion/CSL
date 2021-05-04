@@ -14,6 +14,7 @@ namespace Lab
             menu.Add("       Hello World!       ", new TaskHelloWorld().Execute);
             menu.Add("Calculate: (Y % X)/sqrt(Z)", new TaskCalculateFormula().Execute);
             menu.Add("      Recursion date      ", new TaskRecursionDate().Execute);
+            menu.Add("          Strings         ", new TaskStrings().Execute);
             menu.Add("           Exit           ", () => { menu.Close(); });
             menu.MainLoop();
         }
@@ -27,6 +28,7 @@ namespace Lab
             menu.Add("Hello World!",                new TaskHelloWorld().Execute);
             menu.Add("Calculate: (Y % X)/sqrt(Z)",  new TaskCalculateFormula().Execute);
             menu.Add("Recursion date",              new TaskRecursionDate().Execute);
+            menu.Add("Strings",                     new TaskStrings().Execute);
             menu.Add("Exit",                        () => { menu.Close(); });
             menu.MainLoop();
         }

@@ -167,4 +167,68 @@ namespace Lab
             }
         }
     }
+    class TaskStrings : Task
+    {
+        public override void Execute()
+        {
+            Console.Clear();
+
+            Console.Write("First string: ");
+            string str1 = Console.ReadLine();
+            Console.Write("Second string: ");
+            string str2 = Console.ReadLine();
+            
+            //first
+            
+            Boolean match = false;
+            for (int i = 0; i < (str1.Length>str2.Length? str2.Length : str1.Length); i++)
+                if (str1[i] == str2[i]) match = true; else
+                {
+                    match = false;
+                    break;
+                }
+            Console.WriteLine(match ? "\nСтроки совпадают" : "\nСтроки не совпадают");
+
+            //second
+
+            string str11 = Regex.Replace(str1.ToLower().Trim(' '), "[ ]+", " ");
+            string str22 = Regex.Replace(str2.ToLower().Trim(' '), "[ ]+", " ");
+            Console.Write($"\nFirst string: {str11}\nSecond string: {str22}\n");
+
+            //third
+
+            Boolean reversed = false;
+            for (int i = 0; i < (str1.Length > str2.Length ? str2.Length : str1.Length); i++)
+                if (str1[(str1.Length > str2.Length ? str1.Length : str1.Length)-i-1] == str2[i]) reversed = true;
+                else
+                {
+                    reversed = false;
+                    break;
+                }
+
+            Console.WriteLine(reversed ? "\nПервая строка является перевертышем второй" : "\nПервая строка не является перевертышем второй");
+
+            //fourth
+
+            Match ipAddress1    = Regex.Match(str1, @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"),
+                  ipAddress2    = Regex.Match(str2, @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"),
+                  email1        = Regex.Match(str1, @"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"),
+                  email2        = Regex.Match(str2, @"[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"),
+                  phoneNumber1  = Regex.Match(str1, @"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"),
+                  phoneNumber2  = Regex.Match(str2, @"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$");
+
+            Console.WriteLine(
+                $"\nПервая строка:\n" +
+                $"ip: {(ipAddress1.Success?ipAddress1.Value:"не найден")}\n" +
+                $"email: {(email1.Success?email1.Value:"не найден")}\n" +
+                $"phone: {(phoneNumber1.Success?phoneNumber1.Value:"не найден")}\n" + 
+                $"\nВторая строка:\n" +
+                $"ip: {(ipAddress2.Success ? ipAddress2.Value : "не найден")}\n" +
+                $"email: {(email2.Success ? email2.Value : "не найден")}\n" +
+                $"phone: {(phoneNumber2.Success ? phoneNumber2.Value : "не найден")}\n");
+
+
+            while (Console.ReadKey(true).Key != ConsoleKey.Enter) ;
+        }
+    }
 }
